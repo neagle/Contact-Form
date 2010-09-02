@@ -43,7 +43,6 @@ $grav.prototype = {
         this.getGravatar({ success: this.placeGravatar });
     },
     getGravatar: function(opts) {
-        console.log('Get gravatar');
         this.options.url = this.options.url +
             $.md5(this.options.email) +
             '.jpg?' +
@@ -56,15 +55,18 @@ $grav.prototype = {
         });
     },
     placeGravatar: function() {
-        console.log('Place gravatar');
-        this.$elem.animate({
-            opacity: 0
-        }, this.options.speed, $.proxy(function() {
-            this.$elem.attr('src', this.options.url);
+        var src = this.$elem.attr('src');
+
+        if (src != this.options.url) {
             this.$elem.animate({
-                opacity: 1
-            }, this.options.speed);
-        }, this));
+                opacity: 0
+            }, this.options.speed, $.proxy(function() {
+                this.$elem.attr('src', this.options.url);
+                this.$elem.animate({
+                    opacity: 1
+                }, this.options.speed);
+            }, this));
+        }
     }
 }
 
