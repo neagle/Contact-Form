@@ -1,0 +1,1 @@
+I wanted to create a contact form more or less from scratch that incorporated some awesomeness to it. It is currently in progress. 
